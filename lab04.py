@@ -79,11 +79,38 @@ def draw_pumpkin(t, x, y, radius):
     t.forward(base)
     t.end_fill()
 
+def draw_jack_o_lantern(t, x, y, radius):
+    """Draws pumpkin with eyes and mouth at x and y coordinates and of defined radius"""
+    # Define location and size of left and right eyes relative to pumpkin based on weights
+    eye_r_x = x + 0.3 * radius
+    eye_r_y = y + 0.9 * radius
+    eye_l_x = x - 0.4 * radius
+    eye_l_y = y + 0.9 * radius
+    eye_size = 0.3 * radius
+
+    # Define location and size of mouth relative to pumpkin based on weights
+    mouth_x = x - 0.4 * radius
+    mouth_y = y + 0.4 * radius
+    mouth_size = 0.8 * radius
+
+    # Draw the pumpkin, eyes, and mouth
+    draw_pumpkin(t, x, y, radius)
+    draw_eye(t, eye_l_x, eye_l_y, eye_size)  # Left eye
+    draw_eye(t, eye_r_x, eye_r_y, eye_size)  # Right eye
+    draw_mouth(t, mouth_x, mouth_y, mouth_size)  # Mouth
+
+def draw_scene():
+    """Draws three jack o' lanterns and stars"""
+    draw_jack_o_lantern(t, -150, -250, 100)
+    draw_jack_o_lantern(t, 150, -250, 100)
+    draw_jack_o_lantern(t, 0, -250, 80)
+    draw_sky(t, 50)
+
 # Create a turtle object
 t = turtle.Turtle()
 
 # Hide the turtle and set speed
-t.speed(10)  # 1 is slow, 10 is fast, 0 is instant
+t.speed(20)  # 1 is slow, 10 is fast, 0 is instant
 t.hideturtle()
 
 # Create a window to draw in
@@ -96,33 +123,7 @@ screen.setup(width=600, height=600)
 t.clear()
 
 """PUT YOUR DRAW CALLS TO FUNCTIONS HERE"""
-# Example of drawing a jack-o-lantern with eyes and a mouth
-#draw_pumpkin(t, 0, -100, 100)  # Draw the pumpkin
-#draw_eye(t, -40, 0, 30)  # Left eye
-#draw_eye(t, 40, 0, 30)   # Right eye
-#draw_mouth(t, -50, -50, 100)  # Mouth
-
-# Example draw_sky usage
-#draw_sky(t, 20)  # Draw 20 stars
-
-# Draw three jack-o-lanterns
-draw_pumpkin(t, -150, -250, 100)
-draw_eye(t, -190, -160, 30)  # Left eye
-draw_eye(t, -110, -160, 30)  # Right eye
-draw_mouth(t, -190, -200, 80)  # Mouth
-
-draw_pumpkin(t, 0, -250, 80)
-draw_eye(t, -20, -170, 25)
-draw_eye(t, 20, -170, 25)
-draw_mouth(t, -30, -210, 60)
-
-draw_pumpkin(t, 150, -250, 100)
-draw_eye(t, 110, -160, 30)
-draw_eye(t, 190, -160, 30)
-draw_mouth(t, 110, -200, 80)
-
-# Draw the night sky
-draw_sky(t, 30)
+draw_scene()
 
 # Close the turtle graphics window when clicked
 turtle.exitonclick()
